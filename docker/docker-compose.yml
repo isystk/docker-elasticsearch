@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  elasticsearch:
+    image: elasticsearch-sample
+    build: ./elasticsearch
+    container_name: elasticsearch-sample
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512M -Xmx512M"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200

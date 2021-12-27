@@ -2,9 +2,9 @@ version: '3'
 services:
 
   elasticsearch:
-    image: elasticsearch-sample
+    image: elasticsearch-es
     build: ./elasticsearch
-    container_name: elasticsearch-sample
+    container_name: elasticsearch-es
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
@@ -17,3 +17,8 @@ services:
       - ./elasticsearch/data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.2.0
+    ports:
+      - 5601:5601

@@ -3,5 +3,11 @@
 *.log
 !.gitkeep
 
+# editor
+.vscode
+.idea
+
 # elasticsearch
 docker/elasticsearch/data
+
+accounts.json

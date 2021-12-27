@@ -12,7 +12,7 @@ ElasticSearch のサンプルです。Dockerを起動するとElasticSearch を�
 
 ## 🌐 Demo
 
-![Swagger](./swagger.png "Swagger")
+![Kibana](./kibana.png "Kibana")
 
 
 ## 🔧 開発環境の構築
@@ -30,11 +30,21 @@ sysctl -w vm.max_map_count=262144
 # Docker でSwaggerを起動します。
 $ docker-compose up -d
 
+# サンプルデータを投稿する
+$ unzip accounts.zip
+$ curl -H 'Content-Type: application/x-ndjson' -XPOST 'http://localhost:9200/bank/account/_bulk?pretty' --data-binary @accounts.json
+
+# データを確認する
+$ curl -XGET 'http://localhost:9200/_cat/indices?v'
+health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   bank     wxooemXLSJqIraatTDJM6Q   1   1       1000            0    414.2kb        414.2kb
+
 # Docker を停止します。
 $ docker-compose down
 ```
 
-http://localhost:9200
+# Kibana 
+http://localhost:5601/
 
 
 
